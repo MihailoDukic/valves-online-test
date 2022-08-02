@@ -1,0 +1,17 @@
+// Variables
+$primary-clr: #0161a5;
+$second-clr: #f3f4f5;
+$mobile-spacing: 0 1.2rem;
+$tablet-spacing: 0 2.5rem;
+$desktop-spacing: 0 5rem;
+$txt-clr: #1b1b1b;
+$mobile-menu-clr: #656565;
+$mobile-menu-clr-inner: #575555;
+$btn-background: #ffcc02;
+
+// Mixins
+@mixin flex($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}

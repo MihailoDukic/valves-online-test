@@ -1,0 +1,851 @@
+.desktop {
+  display: none;
+}
+
+// 1. Mobile Menu Styles
+
+.mobile {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  // 1.1 Top content
+  &__top-content {
+    @include flex(space-between, center);
+    padding: $mobile-spacing;
+    height: 37px;
+    background-color: $second-clr;
+
+    &__link {
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 18px;
+      color: $txt-clr;
+      @include flex(center, center);
+
+      img {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  // 1.2 Menu
+  &__navigations {
+    padding: $mobile-spacing;
+    height: 93px;
+    background-color: #fff;
+
+    @include flex(space-between, center);
+
+    &__menu-btn,
+    &__search-btn,
+    &__cart-btn {
+      @include flex(center, center);
+
+      img {
+        cursor: pointer;
+        border-radius: 3px;
+        padding: 13px;
+        background-color: $second-clr;
+      }
+    }
+  }
+
+  // 1.2.1 Navigation
+
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #fff;
+    z-index: 99999;
+    display: none;
+
+    &__top-content {
+      background-color: $primary-clr;
+      @include flex(space-between, center);
+      height: 93px;
+      padding: $mobile-spacing;
+
+      &__headline {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 33px;
+        color: #fff;
+      }
+
+      &__close-menu {
+        img {
+          background: none;
+          padding: 5px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .menu {
+      background-color: #fff;
+
+      &__list {
+        margin: $mobile-spacing;
+
+        img {
+          background: none;
+          padding: 0;
+        }
+
+        @include flex(space-between, center);
+        padding: 20px 0;
+        cursor: pointer;
+        border-bottom: 0.5px solid rgba(157, 157, 157, 0.3);
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 25px;
+        color: $mobile-menu-clr;
+        position: relative;
+      }
+
+      // 1.2.2 Navigation
+
+      &__inner {
+        height: auto;
+        display: none;
+        background-color: $second-clr;
+        padding: $mobile-spacing;
+
+        &__list {
+          padding: 20px 0;
+          cursor: pointer;
+          border-bottom: 0.5px solid rgba(157, 157, 157, 0.3);
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 25px;
+          color: $mobile-menu-clr;
+          @include flex(space-between, center);
+
+          span {
+            @include flex(center, center);
+
+            img {
+              margin-right: 0.5rem;
+            }
+          }
+        }
+
+        // Pneumatics inner
+        .inner-pneumatics {
+          position: relative;
+        }
+
+        .inner-menu-pneumatic {
+          height: auto;
+          display: none;
+
+          &__list {
+            padding: 20px 20px;
+            cursor: pointer;
+            border-bottom: 0.5px solid rgba(157, 157, 157, 0.3);
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 25px;
+            color: $mobile-menu-clr;
+          }
+        }
+      }
+
+      // Js classes
+      #arrow-m-one.arrow-down,
+      #arrow-m-two.arrow-down,
+      #arrow-m-three.arrow-down {
+        transform: rotate(90deg);
+      }
+
+      #inner-m-one.showInnerMobile,
+      #inner-m-two.showInnerMobile,
+      #inner-m-three.showInnerMobile {
+        display: block;
+      }
+    }
+
+    .contact-details {
+      padding: $mobile-spacing;
+      background-color: $second-clr;
+      margin-top: 6rem;
+
+      &__link {
+        display: block;
+        @include flex(start, center);
+        padding: 20px 0;
+        cursor: pointer;
+        border-bottom: 0.5px solid rgba(157, 157, 157, 0.3);
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 25px;
+        color: $mobile-menu-clr;
+
+        img {
+          background: none;
+          padding: 0;
+          margin-right: 0.8rem;
+        }
+
+        &:nth-child(4) {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  // Search overlay & Cart overlay
+
+  &__navigations {
+    position: relative;
+
+    &__search-overlay {
+      padding: $mobile-spacing;
+      position: absolute;
+      bottom: -95%;
+      left: 0;
+      width: 100%;
+      display: none;
+      background-color: $second-clr;
+      padding: 1.5rem;
+
+      .input {
+        width: 100%;
+        border: 1px solid rgba(157, 157, 157, 0.3);
+        padding: 10px;
+      }
+
+      ::placeholder {
+        color: #9d9d9d;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+      }
+
+      // Js classes for search toggle
+    }
+
+    &__search-overlay.show-searchbar-mobile {
+      display: block;
+    }
+
+    // Cart overlay
+    &__cart-overlay {
+      position: absolute;
+      bottom: -90%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $second-clr;
+      padding: 10px 1.5rem;
+      display: none;
+    }
+
+    &__cart-overlay.show-cart-mobile {
+      display: block;
+    }
+  }
+}
+
+// Shipping details mobile
+
+.shipping-details-mobile {
+  background-color: $primary-clr;
+  height: 48px;
+  @include flex(space-evenly, center);
+
+  span {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #fff;
+  }
+}
+
+// Hero Section
+
+.hero {
+  background-image: url('./resources/hero-welcome-mobile.jpg');
+  background-size: cover;
+  background-position: center center;
+  margin: $mobile-spacing;
+  margin-top: 1.5rem;
+
+  &__container {
+    padding: 4rem 1.5rem;
+
+    &__left {
+      .headline {
+        font-weight: 700;
+        font-size: 35px;
+        line-height: 43px;
+        color: #fff;
+      }
+
+      .details {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 22px;
+        color: #fff;
+        margin: 1.5rem 0;
+      }
+
+      .link {
+        background-color: $btn-background;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        color: $txt-clr;
+        padding: 10px 20px;
+        display: inline-block;
+      }
+    }
+
+    &__right {
+      margin-top: 2rem;
+      @include flex(start, start);
+      flex-direction: column;
+
+      &__box {
+        @include flex(space-between, center);
+        margin-top: 2rem;
+
+        .details {
+          margin-left: 1.5rem;
+
+          .headline {
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 31px;
+            color: #fff;
+          }
+
+          p {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Categories
+
+.categories {
+  padding: $mobile-spacing;
+
+  &__headline {
+    margin: 5rem 0;
+
+    .headline {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 33px;
+      color: $txt-clr;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        width: 80px;
+        height: 2px;
+        background-color: $primary-clr;
+      }
+    }
+  }
+
+  .swiper {
+    width: 100%;
+    height: auto;
+    z-index: 1;
+
+    .swiper-wrapper {
+      width: 100%;
+      height: auto;
+
+      .swiper-slide {
+        background-color: $second-clr;
+        padding: 30px;
+        margin-bottom: 3rem;
+
+        .inner-slide {
+          @include flex(center, center);
+          flex-direction: column;
+          text-align: center;
+          position: relative;
+          cursor: pointer;
+
+          img {
+            z-index: 5;
+          }
+
+          .category-name {
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 30px;
+            color: $txt-clr;
+            margin-top: 1.5rem;
+          }
+        }
+
+        .hover-slide {
+          @include flex(center, end);
+          background-image: url('./resources/category-hover.png');
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          z-index: -1;
+
+          .shop-link {
+            background-color: $primary-clr;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            color: $txt-clr;
+            padding: 10px 20px;
+            display: inline-block;
+            color: #fff;
+            margin-bottom: 2.3rem;
+          }
+        }
+      }
+
+      .swiper-slide:hover .hover-slide {
+        opacity: 1;
+        z-index: 5;
+      }
+
+      .swiper-slide:hover .inner-slide .category-name {
+        opacity: 0;
+      }
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      margin-top: -3.5rem;
+    }
+  }
+
+  .swiper-scrollbar {
+    background-color: $primary-clr;
+  }
+}
+
+// Shop Category
+
+.shop-category {
+  padding: $mobile-spacing;
+
+  &__headline {
+    margin: 5rem 0;
+
+    .headline {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 33px;
+      color: $txt-clr;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        width: 80px;
+        height: 2px;
+        background-color: $primary-clr;
+      }
+    }
+  }
+
+  &__container {
+    width: 100%;
+    justify-content: space-between;
+
+    &__top,
+    &__bottom {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      width: 100%;
+
+      .box {
+        @include flex(start, center);
+        width: 100%;
+
+        .right-description {
+          margin-left: 0.5rem;
+
+          h2 {
+            font-weight: 500;
+            font-size: 17px;
+            line-height: 23px;
+            color: $txt-clr;
+          }
+
+          a {
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 18px;
+            color: $primary-clr;
+
+            img {
+              margin-left: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Valves online
+
+.valves-online {
+  padding: $mobile-spacing;
+
+  max-width: 1100px;
+  margin: 5rem auto;
+
+  .headline {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    text-align: center;
+    color: $txt-clr;
+    margin-bottom: 2rem;
+  }
+
+  .description {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 20px;
+    color: $txt-clr;
+    text-align: center;
+  }
+}
+
+// Free Shipping Description
+
+.free-shipping {
+  background-image: url('./resources/free-shipping-hero-mobile.jpg');
+  background-size: cover;
+  background-position: center center;
+  margin: $mobile-spacing;
+  padding: 4rem 2rem;
+
+  &__content {
+    @include flex(center, center);
+    flex-direction: column;
+    text-align: center;
+
+    h2 {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 33px;
+      color: #fff;
+      margin: 1.5rem 0;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 23px;
+      color: #fff;
+    }
+  }
+}
+
+// Products List
+.products__list {
+  margin: 5rem 0;
+  padding: $mobile-spacing;
+
+  &__product {
+    cursor: pointer;
+
+    &__heading {
+      width: 100%;
+
+      label {
+        span {
+          @include flex(start, start);
+        }
+
+        .prod-image {
+          background-color: $primary-clr;
+          display: inline-block;
+          padding: 10px;
+          margin-right: 1rem;
+        }
+
+        @include flex(space-between, start);
+        width: 100%;
+        cursor: pointer;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(157, 157, 157, 0.3);
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 23px;
+        color: $txt-clr;
+
+        #prod-arrow {
+          transform: rotate(90deg);
+        }
+
+        #prod-arrow.active-arrow {
+          transform: rotate(-90deg);
+        }
+      }
+
+      // Toggles
+
+      .content {
+        display: none;
+        margin-left: 4.5rem;
+        height: auto;
+        padding: 20px 0;
+
+        p {
+          font-weight: 300;
+          font-size: 15px;
+          line-height: 20px;
+          color: $txt-clr;
+          padding-top: 15px;
+        }
+      }
+
+      .content.active-content {
+        display: block;
+        height: auto;
+      }
+    }
+  }
+}
+
+// References & Guides
+
+.references-guides {
+  margin: 5rem 0;
+  padding: $mobile-spacing;
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 2fr));
+    gap: 40px;
+
+    &__box {
+      background-image: url('./resources/category-hover.png');
+      background-size: cover;
+      background-position: center center;
+      padding: 35px;
+
+      &__headline {
+        span {
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 33px;
+          color: $txt-clr;
+          @include flex(start, center);
+
+          img {
+            margin-right: 1rem;
+          }
+        }
+      }
+
+      &__content {
+        .description {
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 20px;
+          color: $txt-clr;
+          margin: 1.5rem 0;
+        }
+
+        .link {
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 22px;
+          background-color: $primary-clr;
+          color: #fff;
+          padding: 10px 20px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+// Experts
+
+.experts {
+  padding: $mobile-spacing;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  &__content {
+    text-align: center;
+
+    h2 {
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 30px;
+      color: $txt-clr;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 20px;
+      color: $txt-clr;
+      margin: 0.5rem 0;
+    }
+
+    .link {
+      color: $primary-clr;
+    }
+  }
+}
+
+// Valves Motto
+
+.motto {
+  background-image: url('./resources/motto-hero-background-mobile.jpg');
+  background-size: cover;
+  background-position: center center;
+  margin: 5rem 0;
+  padding: 40px 50px;
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-items: center;
+    width: 100%;
+
+    &__box {
+      @include flex(start, center);
+      margin: 2rem 0;
+
+      &__image {
+        width: 50px;
+        height: auto;
+        margin-right: 1rem;
+      }
+
+      &__content {
+        h2 {
+          font-weight: 700;
+          font-size: 23px;
+          line-height: 31px;
+          color: #fff;
+        }
+
+        p {
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+// Footer
+
+.footer {
+  padding: $mobile-spacing;
+  &__container {
+    &__box {
+      p {
+        margin: 1rem 0;
+      }
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(157, 157, 157, 0.3);
+      padding-bottom: 25px;
+    }
+
+    &__box-list {
+      .toggle-list {
+        @include flex(space-between, center);
+        padding: 25px 0;
+        border-bottom: 1px solid rgba(157, 157, 157, 0.3);
+        font-weight: 500;
+        font-size: 21px;
+        line-height: 29px;
+        color: $txt-clr;
+        cursor: pointer;
+
+        .arrow-toggle {
+          transform: rotate(90deg);
+        }
+
+        // Classes added in JS
+
+        .arrow-toggle.active-arrow {
+          transform: rotate(-90deg);
+        }
+      }
+
+      .toggle-list.remove-border {
+        border-bottom: none;
+      }
+
+      .list {
+        border-bottom: 1px solid rgba(157, 157, 157, 0.3);
+        display: none;
+        a {
+          display: block;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 22px;
+          color: #656565;
+          margin: 1.8rem 0;
+          img {
+            margin-right: 1rem;
+          }
+        }
+      }
+
+      // Classes added in js
+
+      #link-list.active-footer {
+        display: block;
+      }
+    }
+  }
+  .scroll-to {
+    margin: 3rem 0;
+    @include flex(end, end);
+    a {
+      background-color: $primary-clr;
+      width: 50px;
+      height: 50px;
+      @include flex(center, center);
+    }
+  }
+
+  .copy-right {
+    border-top: 1px solid rgba(157, 157, 157, 0.3);
+    @include flex(center, center);
+    flex-wrap: wrap;
+    padding: 3rem 0;
+  }
+}

@@ -46,7 +46,7 @@ const swiper = new Swiper('.swiper', {
             autoplay: true,
         },
 
-        600: {
+        620: {
             slidesPerView: 1.5,
             spaceBetweenSlides: 0,
             loop: true,
